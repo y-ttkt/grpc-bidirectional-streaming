@@ -26,11 +26,9 @@ logs:
 gen-proto:
 	@echo ">>> Generating Go code from .proto files in container…"
 	$(COMPOSE_APP) exec app bash -lc '\
-	  cd /app/app && \
-	  protoc \
-	    -I ../proto \
-	    -I /usr/include \
-	    --go_out=gen/app --go_opt=paths=source_relative \
-	    --go-grpc_out=gen/app --go-grpc_opt=paths=source_relative \
-	    ../proto/*.proto \
+	 protoc \
+       -I proto \
+       --go_out=gen/pb --go_opt=paths=source_relative \
+       --go-grpc_out=gen/pb --go-grpc_opt=paths=source_relative \
+       proto/*.proto \
 	'
